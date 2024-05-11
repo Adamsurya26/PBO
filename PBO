@@ -1,0 +1,82 @@
+package example;
+
+public class Warehouse {
+    private Integer id;
+    private String name;
+    private String brand;
+    private String quantity;
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getBrand() {
+        return brand;
+    }
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    public String getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public static class Main {
+        public static void main(String[] args) {
+            Warehouse warehouse = new Warehouse();
+
+            warehouse.setId(21);
+            warehouse.setName("lampu 6w warna kuning");
+            warehouse.setBrand("Phillips");
+            warehouse.setQuantity("20");
+
+            System.out.println("Id : " + warehouse.getId());
+            System.out.println("Name : " + warehouse.getName());
+            System.out.println("Brand : " + warehouse.getBrand());
+            System.out.println("Quantity : " + warehouse.getQuantity());
+        }
+    }
+}
+
+// Subclass yang mewarisi dari Warehouse dan menambahkan implementasi dengan operator instanceof dan garbage collector
+class ExtendedWarehouse extends Warehouse {
+    private boolean isDisposed;
+
+    public boolean isDisposed() {
+        return isDisposed;
+    }
+
+    public void dispose() {
+        isDisposed = true;
+    }
+
+    public void checkAndDispose(Object obj) {
+        if (obj instanceof ExtendedWarehouse) {
+            ExtendedWarehouse extWarehouse = (ExtendedWarehouse) obj;
+            if (extWarehouse.isDisposed()) {
+                // Do something with the disposed object
+                System.out.println("Object is disposed.");
+            } else {
+                // Dispose the object
+                extWarehouse.dispose();
+                System.out.println("Object is disposed now.");
+            }
+        }
+    }
+
+    // Implementasi garbage collector
+    public void garbageCollector() {
+        // Implementation of garbage collection logic
+        System.out.println("Garbage collection executed.");
+    }
+}
