@@ -1,0 +1,82 @@
+package ShopItem;
+// ShopItem.java
+class ShopItem {
+    void showDetails() {
+        System.out.println("Item details with discount: " + discount() + "%");
+    }
+
+    void additionalMethod() {
+        System.out.println("This is an additional method in ShopItem class.");
+    }
+
+    int discount() {
+        return 0;
+    }
+}
+
+// Kelas turunan dengan berbagai jenis item belanja
+class Electronics extends ShopItem {
+    @Override
+    void showDetails() {
+        System.out.println("Electronics item details with discount: " + discount() + "%");
+    }
+
+    @Override
+    int discount() {
+        return 10;
+    }
+}
+
+class Clothing extends ShopItem {
+    @Override
+    void showDetails() {
+        System.out.println("Clothing item details with discount: " + discount() + "%");
+    }
+
+    // Timpa additionalMethod() di Clothing saja
+    @Override
+    void additionalMethod() {
+        System.out.println("This is an overridden method in Clothing class.");
+    }
+
+    @Override
+    int discount() {
+        return 20;
+    }
+}
+
+class Grocery extends ShopItem {
+    @Override
+    void showDetails() {
+        System.out.println("Grocery item details with discount: " + discount() + "%");
+    }
+
+    @Override
+    int discount() {
+        return 5;
+    }
+}
+
+// Menambahkan tipe item belanja baru
+class Furniture extends ShopItem {
+    @Override
+    void showDetails() {
+        System.out.println("Furniture item details with discount: " + discount() + "%");
+    }
+
+    @Override
+    int discount() {
+        return 15;
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Memverifikasi polimorfisme pada ShopItem
+        ShopItem[] items = { new Electronics(), new Clothing(), new Grocery(), new Furniture() };
+        for (ShopItem item : items) {
+            item.showDetails();
+            item.additionalMethod(); // Memanggil metode additionalMethod() untuk setiap jenis item belanja
+        }
+    }
