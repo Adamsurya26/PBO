@@ -1,0 +1,68 @@
+class MatrixOperations {
+  constructor(matrix) {
+    this.matrix = matrix;
+  }
+
+  subtract(matrix2) {
+    return this.matrix.map((row, i) =>
+      row.map((val, j) => val - matrix2[i][j])
+    );
+  }
+
+  divide(matrix2) {
+    return this.matrix.map((row, i) =>
+      row.map((val, j) => val / matrix2[i][j])
+    );
+  }
+
+  multiply(matrix2) {
+    return this.matrix.map((row, i) =>
+      row.map((val, j) => val * matrix2[i][j])
+    );
+  }
+
+  // Method untuk transpose matrix
+  transpose() {
+    const transposed = this.matrix[0].map((_, colIndex) =>
+      this.matrix.map(row => row[colIndex])
+    );
+    return transposed;
+  }
+
+  rotateToNormal() {
+    const transposed = this.transpose();
+    const normal = transposed[0].map((_, colIndex) =>
+      transposed.map(row => row[colIndex])
+    );
+    return normal;
+  }
+}
+
+const matrix1 = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+const matrix2 = [
+  [9, 8, 7],
+  [6, 5, 4],
+  [3, 2, 1]
+];
+
+const operations = new MatrixOperations(matrix1);
+
+console.log("Pengurangan: ");
+console.log(operations.subtract(matrix2));
+
+console.log("Pembagian: ");
+console.log(operations.divide(matrix2));
+
+console.log("Perkalian: ");
+console.log(operations.multiply(matrix2));
+
+console.log("Transpose: ");
+console.log(operations.transpose());
+
+console.log("Putar kembali ke normal: ");
+console.log(operations.rotateToNormal());
