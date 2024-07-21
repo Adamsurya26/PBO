@@ -1,0 +1,38 @@
+class ArrayManipulator {
+  constructor(arr) {
+    this.arr = arr;
+  }
+
+  // Fungsi untuk mencari angka terkecil dalam array
+  findSmallest() {
+    if (this.arr.length === 0) return null;
+    return Math.min(...this.arr);
+  }
+
+  // Fungsi untuk menghapus banyak nomor dari array
+  removeNumbers(numbersToRemove) {
+    // Buat salinan array asli untuk perbandingan
+    const originalArr = [...this.arr];
+    
+    // Filter array untuk menghapus angka yang ada di numbersToRemove
+    this.arr = this.arr.filter(num => !numbersToRemove.includes(num));
+    
+    // Temukan nomor yang dihapus
+    const removedNumbers = originalArr.filter(num => numbersToRemove.includes(num));
+    
+    // Cetak nomor yang dihapus
+    console.log('Removed numbers:', removedNumbers);
+  }
+}
+
+// Contoh penggunaan
+const arrayManipulator = new ArrayManipulator([5, 2, 9, 1, 7]);
+
+// Mencari angka terkecil
+console.log('Smallest number:', arrayManipulator.findSmallest());
+
+// Menghapus angka 2 dan 7, lalu mencetak nomor yang dihapus
+arrayManipulator.removeNumbers([2, 7]);
+
+// Menampilkan array yang tersisa
+console.log('Array after removal:', arrayManipulator.arr);
